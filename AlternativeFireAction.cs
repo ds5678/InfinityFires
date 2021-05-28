@@ -7,7 +7,7 @@ namespace InfinityFires
 	{
 		public AlternativeFireAction(IntPtr intPtr) : base(intPtr) { }
 
-		public override void Execute()
+		public override void ExecuteSecondary()
 		{
 			Fire fire = this.gameObject.GetComponent<Fire>();
 
@@ -19,5 +19,29 @@ namespace InfinityFires
 				else MelonLoader.MelonLogger.LogError("Attached object doesn't have a fire component.");
 			}
 		}
+
+		public override void ExecuteTertiary()
+		{
+			Fire fire = this.gameObject.GetComponent<Fire>();
+
+			if (fire is null) fire = this.gameObject.GetComponentInChildren<Fire>();
+			
+			if (fire is null) MelonLoader.MelonLogger.LogError("Attached object doesn't have a fire component.");
+			else
+			{
+				if (fire.IsBurning())
+				{
+					float overTheMax = fire.m_MaxOnTODSeconds + 3600 - GetMaxFireDuration();
+					if (overTheMax <= 0) fire.m_MaxOnTODSeconds += 3600;
+					else
+					{
+						fire.m_MaxOnTODSeconds = GetMaxFireDuration();
+						fire.m_ElapsedOnTODSeconds = System.Math.Max(0, fire.m_ElapsedOnTODSeconds - overTheMax);
+					}
+				}
+			}
+		}
+
+		private static float GetMaxFireDuration() => GameManager.GetFireManagerComponent().m_MaxDurationHoursOfFire * 3600;
 	}
 }

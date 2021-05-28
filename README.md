@@ -1,6 +1,6 @@
 ﻿# InfinityFires
 
-A mod for *The Long Dark* that lets the user right click on a fire to make it last forever.
+A mod for *The Long Dark* that lets the user right click on a fire to make it last forever, or middle click to add an hour.
 
 ## [Patreon](https://www.patreon.com/ds5678)
 
