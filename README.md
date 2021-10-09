@@ -10,6 +10,6 @@ I know many people might skip over this, but I hope you don't. You are so specia
 
 1. If you haven't done so already, install MelonLoader by downloading and running [MelonLoader.Installer.exe](https://github.com/HerpDerpinstine/MelonLoader/releases/latest/download/MelonLoader.Installer.exe).
 2. Download the latest version of `InfinityFires.dll` from the [releases page](https://github.com/ds5678/InfinityFires/releases).
-3. Download the latest version of `ModComponent.dll` from the [releases page](https://github.com/ds5678/ModComponent/releases).
+3. Download the latest version of `AlternativeActionUtilites.dll` from the [releases page](https://github.com/ds5678/AlternativeActionUtilites/releases).
 4. Download the latest version of `ModSettings.dll` from its [release page](https://github.com/zeobviouslyfakeacc/ModSettings/releases).
-5. Move `InfinityFires`, `ModComponent.dll`, and `ModSettings.dll` into the Mods folder in your TLD install directory.
+5. Move `InfinityFires.dll`, `AlternativeActionUtilites.dll`, and `ModSettings.dll` into the Mods folder in your TLD install directory.

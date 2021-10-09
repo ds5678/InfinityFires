@@ -1,6 +1,5 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using MelonLoader;
-using UnityEngine;
 
 namespace InfinityFires
 {
@@ -10,17 +9,11 @@ namespace InfinityFires
 		public const string Description = "A mod to make fires last forever."; // Description for the Mod.  (Set as null if none)
 		public const string Author = "ds5678"; // Author of the Mod.  (MUST BE SET)
 		public const string Company = null; // Company that made the Mod.  (Set as null if none)
-		public const string Version = "1.1.0"; // Version of the Mod.  (MUST BE SET)
+		public const string Version = "1.2.0"; // Version of the Mod.  (MUST BE SET)
 		public const string DownloadLink = null; // Download Link for the Mod.  (Set as null if none)
 	}
-	public class Implementation : MelonMod
+	internal class Implementation : MelonMod
 	{
-		public override void OnApplicationStart()
-		{
-			Debug.Log($"[{Info.Name}] Version {Info.Version} loaded!");
-
-			UnhollowerRuntimeLib.ClassInjector.RegisterTypeInIl2Cpp<AlternativeFireAction>();
-		}
 	}
 
 	[HarmonyPatch(typeof(Fire), "Awake")]
@@ -28,7 +21,7 @@ namespace InfinityFires
 	{
 		private static void Postfix(Fire __instance)
 		{
-			ModComponentUtils.ComponentUtils.GetOrCreateComponent<AlternativeFireAction>(__instance);
+			var _ = __instance.GetComponent<AlternativeFireAction>() ?? __instance.gameObject.AddComponent<AlternativeFireAction>();
 		}
 	}
 
@@ -37,7 +30,7 @@ namespace InfinityFires
 	{
 		private static void Postfix(Fire __instance)
 		{
-			ModComponentUtils.ComponentUtils.GetOrCreateComponent<AlternativeFireAction>(__instance);
+			var _ = __instance.GetComponent<AlternativeFireAction>() ?? __instance.gameObject.AddComponent<AlternativeFireAction>();
 		}
 	}
 }

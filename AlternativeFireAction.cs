@@ -1,8 +1,10 @@
-﻿using ModComponentAPI;
+﻿using AlternativeActionUtilities;
+using MelonLoader;
 using System;
 
 namespace InfinityFires
 {
+	[RegisterTypeInIl2Cpp]
 	internal class AlternativeFireAction : AlternativeAction
 	{
 		public AlternativeFireAction(IntPtr intPtr) : base(intPtr) { }
@@ -10,13 +12,13 @@ namespace InfinityFires
 		public override void ExecuteSecondary()
 		{
 			Fire fire = this.gameObject.GetComponent<Fire>();
-
+			
 			if (fire) fire.m_IsPerpetual = !fire.m_IsPerpetual;
 			else
 			{
 				fire = this.gameObject.GetComponentInChildren<Fire>();
 				if (fire) fire.m_IsPerpetual = !fire.m_IsPerpetual;
-				else MelonLoader.MelonLogger.LogError("Attached object doesn't have a fire component.");
+				else MelonLoader.MelonLogger.Error("Attached object doesn't have a fire component.");
 			}
 		}
 
@@ -26,7 +28,7 @@ namespace InfinityFires
 
 			if (fire is null) fire = this.gameObject.GetComponentInChildren<Fire>();
 			
-			if (fire is null) MelonLoader.MelonLogger.LogError("Attached object doesn't have a fire component.");
+			if (fire is null) MelonLoader.MelonLogger.Error("Attached object doesn't have a fire component.");
 			else
 			{
 				if (fire.IsBurning())
